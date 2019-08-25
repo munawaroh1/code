@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<form th:action="@{~/kota/remove}" method="POST" th:object="${kota}">
+	<div class="box box-danger box-solid">
+		<div class="box-header with-border">
+			<h3 class="box-title">Kamu Yakin Akan Memutuskan AKU????</h3>
+			<!-- Hideen ID, Hapus -->
+			<input type="hidden" th:field="*{id}" class="form-control" />
+		</div>
+		<div class="box-body">
+			<table class="table">
+				<tr>
+					<th>ID<th>
+					<td th:text="${kota.id}"></td>
+				</tr>
+				
+				<tr>
+					<th>Nama Kota<th>
+					<td th:text="${kota.name}"></td>
+				</tr>
+				<tr>
+					<th>Provinsi<th>
+					<td th:text="${kota.provinsi.name}"></td>
+				</tr>				
+			</table>
+		</div>
+		<div class="box-footer">
+			<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+			<button type="submit" class="btn btn-danger pull-right">Delete</button>
+		</div>
+	</div>
+</form>
+</html>

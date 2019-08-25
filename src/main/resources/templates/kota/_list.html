@@ -1,0 +1,17 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<tr th:each="item : ${list}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.name}"></td>
+		<!-- menampilkan nama provinsi dari class kota refers ke tabel provinsi -->
+		<td th:text="${item.provinsi.name}"></td>
+		<td>
+			<button type="button" class="btn btn-warning btn-update" th:value="${item.id}">
+				<i class="fa fa-edit"></i>
+			</button>
+	
+			<button type="button" class="btn btn-danger btn-delete" th:value="${item.id}">
+				<i class="fa fa-trash"></i>
+			</button>
+		</td>
+	</tr>
+</html>

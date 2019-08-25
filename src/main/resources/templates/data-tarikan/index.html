@@ -1,0 +1,177 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{fragments/layout}">
+	<head>
+		<title>Data Tarikan</title>
+		<link rel="stylesheet" href="@{~/datatables.net/css/1.10.10/jquery.dataTables.min.css}" />
+		<script src="@{~/datatables.net/js/1.10.10/jquery-1.11.3.min.js}"></script>
+		<script src="@{~/datatables.net/js/1.10.10/jquery.dataTables.min.js"></script>
+		
+	</head>
+	<body>
+		<div data-layout-fragment="content">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">List Data Tarikan</h3>
+					<div class="box-tools">
+					
+						<button type="button" class="btn btn-success tbn-sm" id="btn-import">upload
+							<i class="fa fa-plus"></i>
+						</button>
+					
+						<button type="button" class="btn btn-info tbn-sm" id="btn-add">
+							<i class="fa fa-plus"></i>
+						</button>
+						
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover" id="mypage">
+						<thead> 
+							<tr>
+ 								<th>ID</th>
+								<th> Status pinjam </th>
+								<th> No Rek </th>
+								<th> No Pin </th>
+								<th> Nama Konsumen </th>
+								<th> No Rangka </th>
+								<th> No Mesin </th>
+								<th> Covernote Date </th>
+								<th> Tipe Mobil </th>
+								<th> Nama BPKB </th>
+								<th> Nama Dealer </th>
+								<th> Alamat Dealer </th>
+								<th> Kota Dealer </th>
+								<th> Telepon Dealer </th>
+								<th> Contact Person </th>
+								<th> CMO </th>
+								<th> Aging Covernote </th>
+								<th> Overdue Covernote </th>
+								<th> tgl Realisasi </th>
+								<th> Action </th>
+								
+							</tr>
+						</thead>
+						<tbody id="list-birojasa">
+								<tr th:each="row : ${tarikan}">
+								<td th:text="${row.id}"></td>
+								<td th:text="${row.statusPinjaman}"></td>
+								<td th:text="${row.noRek}"></td>
+								<td th:text="${row.noPin}"></td>
+								<td th:text="${row.customerName}"></td>
+								<td th:text="${row.noRangka}"></td>
+								<td th:text="${row.noMesin}"></td>
+								<td th:text="${row.covernoteDate}"></td>
+								<td th:text="${row.tipeMobil}"></td>
+								<td th:text="${row.bpkbName}"></td>
+								<td th:text="${row.dealerName}"></td>
+								<td th:text="${row.dealerAddress}"></td>
+								<td th:text="${row.dealerCity}"></td>
+								<td th:text="${row.dealerPhone}"></td>
+								<td th:text="${row.dealerContact}"></td>
+								<td th:text="${row.cmo}"></td>
+								<td th:text="${row.covernoteAging}"></td>
+								<td th:text="${row.covernoteOverdue}"></td>
+								<td th:text="${row.tglRealisasi}"></td>
+								<td>
+									<button type="button" class="btn btn-warning btn-update" th:value="${row.id}" >
+										<i class="fa fa-edit"></i>
+									</button>
+									
+									<button type="button" class="btn btn-danger btn-delete" th:value="${row.id}">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="main-modal" data-layout-fragment="content-modal">
+			<div class="modal-dialog">
+				<div class="modal-content" id="main-modal-content">
+				
+				</div>
+			</div>
+		</div>
+		<!-- cara nampilin modal -->
+		<script data-layout-fragment="script-js"> 
+			$("#btn-add").click(function(){
+				$.ajax({
+					url:'/provinsi/create', 
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
+			
+			$("#main-modal").on('submit', 'form', function(){
+				var vUrl = $(this).attr('action');
+				var vData = $(this).serialize();
+				
+				$.ajax({
+					url:vUrl, 
+					type:'post',
+					data:vData,
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('hide');
+						//panggil loadData
+						loadData();
+					}
+				});
+				
+				return false;
+			});
+			
+			//functionn load data 
+			function loadData(){
+				$.ajax({
+					url:'/provinsi/list',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#list-provinsi').html(hasil);
+					}
+				});
+			}
+			
+			$("#list-provinsi").on('click','.btn-update', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/provinsi/edit/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			}).on('click','.btn-delete', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/provinsi/hapus/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
+
+			$(document).ready(function() {
+				$('#mypage').DataTable();
+			});
+		</script>
+	</body>
+</html>

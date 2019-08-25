@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<tr th:each="item : ${birojasa}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.dealerName}"></td>
+		<td th:text="${item.dealerAddress}"></td>
+		<td th:text="${item.dealerCity}"></td>
+		<td th:text="${item.birojasaName}"></td>
+		<td th:text="${item.cabangKelola}"></td>
+		<td>
+			<button type="button" class="btn btn-warning btn-update" th:value="${item.id}">
+				<i class="fa fa-edit"></i>
+			</button>
+	
+			<button type="button" class="btn btn-danger btn-delete" th:value="${item.id}">
+				<i class="fa fa-trash"></i>
+			</button>
+		</td>
+	</tr>
+</html>

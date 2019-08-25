@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<form th:action="@{~/kecamatan/save}" method="post" th:object="${kecamatan}">
+	<div class="box box-info box-solid">
+		<div class="box-header">
+			<h3 class="box-title">form kecamatan</h3>
+		</div>
+		<div class="box-body">
+			<div class="form-horizontal">
+			
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">Kota</label>
+					<div class="col-md-8 col-sm-8 col-xs-12">
+					<!-- properti dari model select ambil list provinsi-->
+
+						<select th:field="*{kotaId}" class="form-control" >
+						<option value="">=pilih Kota=</option>
+						<option th:each="item : ${listKota}" th:value="${item.id}" th:text="${item.name}" ></option>
+						</select>
+
+
+					</div>
+				</div>
+			
+				
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Kecamatan</label>
+					<div class="col-md-8 col-sm-8 col-xs-12">
+					<!-- properti dari model -->
+					<!-- hidden ID tmbahin munna-->	
+						<input type="hidden" th:field="*{id}" class="form-control"/>	
+						<input type="text" th:field="*{namaKecamatan}" class="form-control"/>					
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+		<div class="box-footer">
+			<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+			<button type="submit" class="btn btn-success pull-right">Save</button>
+		</div>
+	</div>
+</form>
+</html>

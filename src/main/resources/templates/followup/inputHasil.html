@@ -1,0 +1,119 @@
+<html lang="en">
+	<form th:action="@{~/followup/save}" method="post" th:object="${followup}">
+		<div class="box box-info">
+			<div class="box-header">
+				<h3 class="box-title">input hasil follow up</h3>
+			</div>
+			
+			<div class="box-body">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Birojasa Name</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{birojasaName}" class="form-control" disabled>
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">2
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Dealer Name</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{dealerName}" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Dealer Address</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{dealerAddress}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">No Rek</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{noRek}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">No Pin</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{noPin}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama KOnsumen</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{customerName}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama BPKB</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{bpkbName}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">No Rangka</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{noRangka}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">No Mesin</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{noMesin}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">CN Date</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="date" th:field="*{covernoteDate}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">status</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{status}" class="form-control">
+	
+							<select th:field="*{status}" class="form-control">
+								<option value="bpkb&nbspbelum&nbspjadi">Bpkb Belum Jadi</option>
+								<option value="bpkb&nbspjadi">Bpkb Jadi</option>
+								<option value="mercedes">Mercedes</option>
+								<option value="audi">Audi</option>
+							</select>
+	
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Follow Up</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="date" th:field="*{tglFollowup}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{keterangan}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Kategori Permassalahan</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{kategoriId}" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{userId}" class="form-control">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+				<button type="submit" class="btn btn-success pull-right">Save</button>
+			</div>
+		</div>
+	</form>
+</html>

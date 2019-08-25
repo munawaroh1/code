@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<tr th:each="item : ${list}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.birojasaName}"></td>
+		<td th:text="${item.dealerName}"></td>
+		<td th:text="${item.dealerAddress}"></td>
+		<td th:text="${item.noRek}"></td>
+		<td th:text="${item.noPin}"></td>
+		<td th:text="${item.customerName}"></td>
+		<td th:text="${item.bpkbName}"></td>
+		<td th:text="${item.noRangka}"></td>
+		<td th:text="${item.noMesin}"></td>
+		<td th:text="${item.covernoteDate}"></td>
+		<td th:text="${item.status.statusName}"></td>
+		<td th:text="${item.tglFollowup}"></td>
+		<td th:text="${item.keterangan}"></td>
+		<td th:text="${item.kategoriPermasalahan.jenisPermasalahan}"></td>
+		<td th:text="${item.userId}"></td>
+		<td>
+		
+			<button type="button" class="btn btn-xs btn-warning btn-update"
+				th:value="${item.id}">
+				<i class="fa fa-edit"></i>
+			</button>
+	
+			<button type="button" class="btn btn-xs btn-danger btn-delete"
+				th:value="${item.id}">
+				<i class="fa fa-trash"></i>
+			</button>
+		</td>
+	</tr>
+</html>
